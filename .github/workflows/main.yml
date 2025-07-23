@@ -1,0 +1,17 @@
+name: Trigger Shared Build (Python)
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'Choose stage'
+        required: true
+        type: choice
+        options: [dev, uat]
+
+jobs:
+  trigger-build:
+    uses: sumersovitkargit/UBS_CI/.github/workflows/shared-build.yml@main
+    with:
+      environment-name: python
+      stage: ${{ github.event.inputs.stage }}
